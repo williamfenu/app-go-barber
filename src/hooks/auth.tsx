@@ -6,13 +6,19 @@ export interface UserData {
   password: string;
 }
 
+interface User {
+  id: string;
+  name: string;
+  avatarUrl: string;
+}
+
 interface AuthRequestData {
   token: string;
-  user: Record<string, unknown>;
+  user: User;
 }
 
 interface AuthContextData {
-  user: Record<string, unknown>;
+  user: User;
   signIn(credentials: UserData): Promise<void>;
   signOut(): void;
 }
@@ -25,6 +31,8 @@ const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem('@GoBarber:user');
 
     if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
     return {} as AuthRequestData;
@@ -41,6 +49,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     localStorage.setItem('@GoBarber:token', token);
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
 
     setData({ user, token });
   }, []);

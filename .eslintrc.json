@@ -37,6 +37,7 @@
         "no-unused-expressions": "off",
         "react/prop-types": "off",
         "prettier/prettier": "error",
+        "import/no-duplicates": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
