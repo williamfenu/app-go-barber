@@ -9,6 +9,7 @@ export interface UserData {
 interface User {
   id: string;
   name: string;
+  email: string;
   avatarUrl: string;
 }
 
@@ -21,6 +22,7 @@ interface AuthContextData {
   user: User;
   signIn(credentials: UserData): Promise<void>;
   signOut(): void;
+  updateUser(updatedUser: User): void;
 }
 
 const AuthContext = createContext({} as AuthContextData);
@@ -62,8 +64,18 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({} as AuthRequestData);
   }, []);
 
+  const updateUser = useCallback(
+    (user: User): void => {
+      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+      setData({ user, token: data.token });
+    },
+    [data.token],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user: data.user, signIn, signOut, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
