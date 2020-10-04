@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
 import logo from '../../assets/go-barber-logo.svg';
-import noImage from '../../assets/no-image.png';
 import api from '../../services/api';
 import {
   Container,
@@ -132,7 +131,7 @@ const Dashboard: React.FC = () => {
         <HeaderContent>
           <img src={logo} alt="GoBarber" />
           <Profile>
-            <img src={user.avatarUrl ?? noImage} alt={user.name} />
+            <img src={user.avatarUrl} alt={user.name} />
 
             <div>
               <span>Bem-vindo,</span>
@@ -160,7 +159,7 @@ const Dashboard: React.FC = () => {
               <strong>Atendimento a seguir</strong>
               <div>
                 <img
-                  src={nextAppointment.user.avatarUrl ?? noImage}
+                  src={nextAppointment.user.avatarUrl}
                   alt={nextAppointment.user.name}
                 />
                 <strong>{nextAppointment.user.name}</strong>
@@ -181,7 +180,7 @@ const Dashboard: React.FC = () => {
                 </span>
                 <div>
                   <img
-                    src={morningAppointment.user.avatarUrl ?? noImage}
+                    src={morningAppointment.user.avatarUrl}
                     alt={morningAppointment.user.name}
                   />
                   <strong>{morningAppointment.user.name}</strong>
@@ -197,7 +196,7 @@ const Dashboard: React.FC = () => {
                 </span>
                 <div>
                   <img
-                    src={afternoonAppointment.user.avatarUrl ?? noImage}
+                    src={afternoonAppointment.user.avatarUrl}
                     alt={afternoonAppointment.user.name}
                   />
                   <strong>{afternoonAppointment.user.name}</strong>

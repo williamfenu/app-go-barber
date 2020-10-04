@@ -80,12 +80,12 @@ const ResetPassword: React.FC = () => {
         <AnimationContainer>
           <img src={logo} alt="go-barber" />
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Alterar senha</h1>
+            <h1>Alteração de senha</h1>
             <Input
               name="password"
               icon={FiLock}
               type="password"
-              placeholder="senha"
+              placeholder="Senha"
             />
 
             <Input
